@@ -10,7 +10,7 @@ class Profile extends Model
     protected $primaryKey = 'uuid';
     public $incrementing = false; // this needs setting because we're using uuid instead of int.
 
-    protected $fillable = array('description', 'profile_type');
+    protected $fillable = array('description', 'profile_type', 'profile_link');
 
     protected static function boot()
     {
@@ -27,5 +27,9 @@ class Profile extends Model
         return $this->belongsTo(User::class);
     }
 
+    public function generateProfileLink()
+    {
+
+    }
 
 }

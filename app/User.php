@@ -2,6 +2,7 @@
 
 namespace App;
 
+use App\Http\Controllers\ProfileController;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
@@ -52,9 +53,11 @@ class User extends Authenticatable
         });
 
         static::created(function($user) {
+
             $user->profile()->create(array(
                 'description' => 'A little about me ...',
-                'profile_type' => request()->get('profile-type')
+                'profile_type' => request()->get('profile-type'),
+                'profile_link' => ProfileController::createProfileLink($user->name),
             ));
         });
     }
