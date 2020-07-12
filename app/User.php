@@ -5,6 +5,7 @@ namespace App;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
+use Illuminate\Support\Str;
 
 class User extends Authenticatable
 {
@@ -36,4 +37,22 @@ class User extends Authenticatable
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
+
+    // set the primary key to be the uuid
+    protected $primaryKey = 'uuid';
+
+    protected static function boot()
+    {
+        parent::boot();
+
+        //create a uuid for a new user
+        static::creating(function($user){
+            $user->uuid = (string) Str::uuid();
+        });
+    }
+
+    public function profile()
+    {
+        return $this->hasOne(Profile::class);
+    }
 }
