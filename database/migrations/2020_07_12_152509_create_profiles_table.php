@@ -16,7 +16,12 @@ class CreateProfilesTable extends Migration
         Schema::create('profiles', function (Blueprint $table) {
             $table->uuid('uuid')->primary();
             $table->foreignUuid('user_uuid');
+            $table->string('profile_type')->default('reader');
+            $table->string('image')->nullable();
+            $table->text('description')->nullable();
+            $table->string('twitter_handle')->nullable();
             $table->timestamps();
+            $table->index('user_uuid');
         });
     }
 

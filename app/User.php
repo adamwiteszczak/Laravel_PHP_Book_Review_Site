@@ -40,6 +40,7 @@ class User extends Authenticatable
 
     // set the primary key to be the uuid
     protected $primaryKey = 'uuid';
+    public $incrementing = false; // this needs setting because we're using uuid instead of int.
 
     protected static function boot()
     {
@@ -48,6 +49,13 @@ class User extends Authenticatable
         //create a uuid for a new user
         static::creating(function($user){
             $user->uuid = (string) Str::uuid();
+        });
+
+        static::created(function($user) {
+            $user->profile()->create(array(
+                'description' => 'A little about me ...',
+                'profile_type' => request()->get('profile-type')
+            ));
         });
     }
 
