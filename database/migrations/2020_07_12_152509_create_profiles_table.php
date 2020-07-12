@@ -17,7 +17,7 @@ class CreateProfilesTable extends Migration
             $table->uuid('uuid')->primary();
             $table->foreignUuid('user_uuid');
             $table->string('profile_type')->default('reader');
-            $table->string('profile_link');
+            $table->string('profile_link')->unique();
             $table->string('image')->nullable();
             $table->text('description')->nullable();
             $table->string('twitter_handle')->nullable();
