@@ -25,11 +25,11 @@
                 <div class="small pb-2"><a href="/profile/edit">Edit Profile</a></div>
             @endcan
             <div class="d-flex">
-                <div class="pr-2 small">Following <strong>65</strong> </div>
+                <div class="pr-4 small"><following-count link="{{ $user->profile->profile_link }}"></following-count></div>
                 @if($user->profile->profile_type == 'author')
-                    <div class="pr-2 small">Readers <strong>18</strong></div>
+                    <div class="pr-4 small"><follower-count link="{{ $user->profile->profile_link }}"></follower-count></div>
                 @endif
-                <div class="pr-2 small">Reviews <strong>2</strong></div>
+                <div class="pr-4 small">Reviews <strong>2</strong></div>
             </div>
             <div class="pt-4"> {{ $user->profile->description }}</div>
         </div>

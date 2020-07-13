@@ -52,7 +52,13 @@ class ProfileController extends Controller
             $hide_follow_button = false;
         }
 
-        return view('profile/index', compact('user_profile_image', 'user', 'follows', 'hide_follow_button'));
+        return view('profile/index',
+            compact(
+                'user_profile_image',
+                'user',
+                'follows',
+                'hide_follow_button')
+        );
     }
 
     public function update()
@@ -113,6 +119,22 @@ class ProfileController extends Controller
         return view('profile/edit', compact('user'));
     }
 
+    public function followerCount($link)
+    {
+        $profile = Profile::where('profile_link', '=', $link)->firstOrFail();
+        return json_encode(
+            array('follower_count' => $profile->followers->count())
+        );
+    }
+
+    public function followingCount($link)
+    {
+        $profile = Profile::where('profile_link', '=', $link)->firstOrFail();
+        return json_encode(
+            array('following_count' => $profile->user->following->count())
+        );
+    }
+
     public static function createProfileLink(string $name)
     {
         $link = str_replace(" ", "-", $name);
@@ -132,5 +154,10 @@ class ProfileController extends Controller
         }
 
         return strtolower($link);
+    }
+
+    private function getFollowerCount(User $user)
+    {
+        return $user->followers->count();
     }
 }

@@ -17,3 +17,6 @@ use Illuminate\Support\Facades\Route;
 Route::middleware('auth:api')->get('/user', function (Request $request) {
     return $request->user();
 });
+
+Route::get('/profile/{link}/following/count', 'ProfileController@followingcount');
+Route::get('/profile/{link}/followers/count', 'ProfileController@followercount');
