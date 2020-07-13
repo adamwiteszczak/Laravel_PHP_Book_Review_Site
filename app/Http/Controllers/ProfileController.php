@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Profile;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Intervention\Image\Facades\Image;
@@ -10,16 +11,25 @@ use Illuminate\Support\Facades\Storage;
 class ProfileController extends Controller
 {
     /** helper functions */
-    public function getProfileImage()
+    public function getProfileImage($user)
     {
-        return (auth()->user()->profile->image) ? '/storage/'. auth()->user()->profile->image : '/img/noimage.jpg';
+        return ($user->profile->image) ? '/storage/'. $user->profile->image : '/img/noimage.jpg';
     }
 
 
     public function index()
     {
-        $user_profile_image = $this->getProfileImage();
+        $user_profile_image = $this->getProfileImage(auth()->user());
         $user = auth()->user();
+        return view('profile/index', compact('user_profile_image', 'user'));
+    }
+
+    public function show($link)
+    {
+        $profile = Profile::where('profile_link', '=', $link)->firstOrFail();
+        $user = $profile->user;
+        $user_profile_image = $this->getProfileImage($user);
+
         return view('profile/index', compact('user_profile_image', 'user'));
     }
 

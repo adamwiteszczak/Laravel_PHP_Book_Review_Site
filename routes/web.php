@@ -19,6 +19,7 @@ Route::get('/', function () {
 
 Route::get('/profile', 'ProfileController@index');
 Route::get('/profile/edit', 'ProfileController@edit');
+Route::get('/profile/{link}', 'ProfileController@show');
 Route::patch('/profile', 'ProfileController@update')->name('profile.update');
 
 Auth::routes();
