@@ -18,10 +18,12 @@
                 font-weight: 200;
                 height: 100vh;
                 margin: 0;
+                background-image: url("img/bg.jpg");
+                background-size: cover;
             }
 
             .full-height {
-                height: 100vh;
+                height: 50vh;
             }
 
             .flex-center {
@@ -81,7 +83,7 @@
             @endif
 
             <div class="content">
-
+                <div class="title">Book Site</div>
             </div>
         </div>
     </body>

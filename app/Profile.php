@@ -22,6 +22,14 @@ class Profile extends Model
         });
     }
 
+    public function getProfileImage()
+    {
+        if ($this->image) {
+            return '/storage/' . $this->image;
+        }
+        return '/img/noimage.jpg';
+    }
+
     public function user()
     {
         return $this->belongsTo(User::class);
