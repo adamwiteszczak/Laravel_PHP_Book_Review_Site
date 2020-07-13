@@ -7,6 +7,14 @@ use Illuminate\Support\Facades\DB;
 
 class ProfileController extends Controller
 {
+    public function index()
+    {
+        $user_profile_image = (auth()->user()->profile->image) ? auth()->user()->profile->image : 'img/noimage.jpg';
+        $user = auth()->user();
+
+        return view('profile/index', compact('user_profile_image', 'user'));
+    }
+
     public static function createProfileLink(string $name)
     {
         $link = str_replace(" ", "-", $name);
