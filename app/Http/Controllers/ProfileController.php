@@ -19,8 +19,12 @@ class ProfileController extends Controller
 
     public function index()
     {
-        $user_profile_image = $this->getProfileImage(auth()->user());
         $user = auth()->user();
+        if (!$user) {
+            return redirect('/');
+        }
+
+        $user_profile_image = $this->getProfileImage($user);
         return view('profile/index', compact('user_profile_image', 'user'));
     }
 
@@ -36,6 +40,12 @@ class ProfileController extends Controller
     public function update()
     {
         $user = auth()->user();
+
+        if (!$user) {
+            return redirect('/login');
+        }
+
+        $this->authorize('update', $user->profile);
 
         $data = request()->validate(
             array(
@@ -77,6 +87,11 @@ class ProfileController extends Controller
     public function edit()
     {
         $user = auth()->user();
+        if (!$user) {
+            return redirect('/login');
+        }
+
+        $this->authorize('update', $user->profile);
         return view('profile/edit', compact('user'));
     }
 

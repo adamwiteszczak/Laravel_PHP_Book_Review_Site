@@ -13,7 +13,9 @@
                     ({{ $user->profile->profile_type }})
                 </div>
             </div>
-            <div class="small pb-2"><a href="/profile/edit">Edit Profile</a></div>
+            @can('update', $user->profile)
+                <div class="small pb-2"><a href="/profile/edit">Edit Profile</a></div>
+            @endcan
             <div class="d-flex">
                 <div class="pr-2 small">Following <strong>65</strong> </div>
                 @if($user->profile->profile_type == 'author')
