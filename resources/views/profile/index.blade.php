@@ -3,8 +3,16 @@
 @section('content')
 <div class="container">
     <div class="row">
-        <div class="col-2">
-            <img src="{{ $user_profile_image }}" class="w-50 rounded-circle">
+        <div class="col-2 align-content-center">
+            <img src="{{ $user_profile_image }}" class="w-100 rounded-circle">
+            <div class="pt-4 align-content-center text-center">
+                @if(!$hide_follow_button)
+                <follow-button
+                    user-uuid="{{ $user->uuid }}"
+                    follows="{{ $follows }}"
+                ></follow-button>
+                @endif
+            </div>
         </div>
         <div class="col-6">
             <div class="d-flex">

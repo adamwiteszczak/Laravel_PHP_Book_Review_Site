@@ -16,7 +16,6 @@ class ProfileController extends Controller
         return ($user->profile->image) ? '/storage/'. $user->profile->image : '/img/noimage.jpg';
     }
 
-
     public function index()
     {
         $user = auth()->user();
@@ -24,8 +23,17 @@ class ProfileController extends Controller
             return redirect('/');
         }
 
+        $follows = false; // you can't follow yourself
+        $hide_follow_button = true;
+
         $user_profile_image = $this->getProfileImage($user);
-        return view('profile/index', compact('user_profile_image', 'user'));
+
+        return view('profile/index', compact(
+            'user_profile_image',
+            'user',
+            'follows',
+            'hide_follow_button')
+        );
     }
 
     public function show($link)
@@ -34,7 +42,17 @@ class ProfileController extends Controller
         $user = $profile->user;
         $user_profile_image = $this->getProfileImage($user);
 
-        return view('profile/index', compact('user_profile_image', 'user'));
+        $auth_user = auth()->user();
+        $hide_follow_button = true;
+        $follows = false;
+
+        if ($auth_user && $auth_user->uuid != $user->uuid) {
+            //unhide the button if you are not viewing your own profile
+            $follows = auth()->user()->following->contains($user->profile->uuid);
+            $hide_follow_button = false;
+        }
+
+        return view('profile/index', compact('user_profile_image', 'user', 'follows', 'hide_follow_button'));
     }
 
     public function update()

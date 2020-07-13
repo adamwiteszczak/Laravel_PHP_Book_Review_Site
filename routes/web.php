@@ -17,10 +17,18 @@ Route::get('/', function () {
     return view('welcome');
 });
 
+/**
+ * Profile Routes
+ */
 Route::get('/profile', 'ProfileController@index');
 Route::get('/profile/edit', 'ProfileController@edit');
 Route::get('/profile/{link}', 'ProfileController@show');
 Route::patch('/profile', 'ProfileController@update')->name('profile.update');
+
+/**
+ * Follow Routes
+ */
+Route::post('/follow/{user}', 'FollowsController@store');
 
 Auth::routes();
 
