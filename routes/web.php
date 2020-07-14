@@ -34,6 +34,7 @@ Route::post('/follow/{user}', 'FollowsController@store');
  * Book Routes
  */
 Route::get('/books/create', 'BookController@create');
+Route::get('/books/{book}','BookController@show');
 Route::put('/books', 'BookController@store');
 
 Auth::routes();

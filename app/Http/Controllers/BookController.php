@@ -13,7 +13,9 @@ class BookController extends Controller
     public function create()
     {
         $user = auth()->user();
-        //$this->authorize('create', $user);
+
+        $this->authorize('create', Book::Class);
+
         $genres = Genre::all()->sortBy('name');
         return view('books/create', compact('user', 'genres'));
     }
@@ -22,7 +24,7 @@ class BookController extends Controller
     {
         $user = auth()->user();
 
-        //$this->authorize('create', $user);
+        $this->authorize('create', Book::Class);
 
         $data = request()->validate(
           array(
@@ -37,7 +39,10 @@ class BookController extends Controller
         if (request('cover_image')) {
             request()->validate(['cover_image' => 'image']);
             $data['cover_image'] = request('cover_image')->store('book', 'public');
-            $image = Image::make(public_path('storage/' . $data['cover_image']))->fit('500', 500);
+            $image = Image::make(public_path('storage/' . $data['cover_image']))
+                ->resize(null, 750, function ($constraint) {
+                $constraint->aspectRatio();
+            });
             $image->save();
         }
 
@@ -46,6 +51,20 @@ class BookController extends Controller
         Book::create($data);
 
         return redirect('/profile');
+    }
 
+    public function show(Book $book)
+    {
+        $cover_image = $this->getCoverImage($book);
+        return view ('books/show', compact('book', 'cover_image'));
+    }
+
+    private function getCoverImage(Book $book)
+    {
+        if ($book->cover_image) {
+            return '/storage/' . $book->cover_image;
+        }
+
+        return '/img/nocover.jpg';
     }
 }
