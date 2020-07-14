@@ -12,13 +12,18 @@ class BookController extends Controller
 {
     public function create()
     {
-        $user = Auth()->user();
+        $user = auth()->user();
+        //$this->authorize('create', $user);
         $genres = Genre::all()->sortBy('name');
         return view('books/create', compact('user', 'genres'));
     }
 
     public function store()
     {
+        $user = auth()->user();
+
+        //$this->authorize('create', $user);
+
         $data = request()->validate(
           array(
               'author_name' => ['required'],
