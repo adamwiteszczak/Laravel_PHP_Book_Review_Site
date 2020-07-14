@@ -30,6 +30,12 @@ Route::patch('/profile', 'ProfileController@update')->name('profile.update');
  */
 Route::post('/follow/{user}', 'FollowsController@store');
 
+/**
+ * Book Routes
+ */
+Route::get('/books/create', 'BookController@create');
+Route::put('/books', 'BookController@store');
+
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
