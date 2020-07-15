@@ -17,7 +17,7 @@
             @if($user->profile->twitter_handle)
             <div class="pt-4 align-content-center text-center d-flex">
                 <div>
-                    <img src="img/Twitter_Logo_Blue.png" style="width:25px">
+                    <img src="/img/Twitter_Logo_Blue.png" style="width:25px">
                 </div>
                 <div class="align-items-baseline">
                     <a href="https://twitter.com/{{ $user->profile->twitter_handle }}" target="_blank">
