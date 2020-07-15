@@ -27,13 +27,13 @@ class BookController extends Controller
         $this->authorize('create', Book::Class);
 
         $data = request()->validate(
-          array(
+            array(
               'author_name' => ['required'],
               'title' => ['required'],
               'blurb'=> ['required'],
               'genre_id' => ['required'],
               'cover_image' => ''
-          )
+            )
         );
 
         if (request('cover_image')) {
@@ -41,8 +41,8 @@ class BookController extends Controller
             $data['cover_image'] = request('cover_image')->store('book', 'public');
             $image = Image::make(public_path('storage/' . $data['cover_image']))
                 ->resize(null, 750, function ($constraint) {
-                $constraint->aspectRatio();
-            });
+                    $constraint->aspectRatio();
+                });
             $image->save();
         }
 
@@ -56,7 +56,7 @@ class BookController extends Controller
     public function show(Book $book)
     {
         $cover_image = $this->getCoverImage($book);
-        return view ('books/show', compact('book', 'cover_image'));
+        return view('books/show', compact('book', 'cover_image'));
     }
 
     private function getCoverImage(Book $book)
