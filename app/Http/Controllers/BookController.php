@@ -28,11 +28,12 @@ class BookController extends Controller
 
         $data = request()->validate(
             array(
-              'author_name' => ['required'],
-              'title' => ['required'],
-              'blurb'=> ['required'],
-              'genre_id' => ['required'],
-              'cover_image' => ''
+                'author_name' => ['required'],
+                'title' => ['required'],
+                'blurb'=> ['required'],
+                'genre_id' => ['required'],
+                'cover_image' => '',
+                'store_link' => 'url'
             )
         );
 

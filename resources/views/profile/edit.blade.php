@@ -66,6 +66,26 @@
                 @enderror
             </div>
 
+            <div class="form-group row col-6 offset-3">
+                <label for="website_url" class="col-md-4 col-form-label">Website</label>
+
+                <input
+                    id="website_url"
+                    type="text"
+                    class="form-control @error('twitter_handle') is-invalid @enderror"
+                    name="website_url"
+                    value="{{ old('website_url') ?? $user->profile->website_url }}"
+                    autocomplete="twitter_handle"
+                    autofocus
+                >
+
+                @error('website_url')
+                <span class="invalid-feedback" role="alert">
+                        <strong>{{ $message }}</strong>
+                    </span>
+                @enderror
+            </div>
+
             <div class="form-group row">
                 <div class="d-flex col-3 offset-3">
                     <div>

@@ -21,6 +21,7 @@ class CreateBooksTable extends Migration
             $table->text('blurb');
             $table->foreignId('genre_id');
             $table->string('cover_image')->nullable();
+            $table->string('store_link')->nullable();
             $table->timestamps();
         });
     }

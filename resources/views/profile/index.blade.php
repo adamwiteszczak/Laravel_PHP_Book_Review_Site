@@ -13,6 +13,33 @@
                 ></follow-button>
                 @endif
             </div>
+
+            @if($user->profile->twitter_handle)
+            <div class="pt-4 align-content-center text-center d-flex">
+                <div>
+                    <img src="img/Twitter_Logo_Blue.png" style="width:25px">
+                </div>
+                <div class="align-items-baseline">
+                    <a href="https://twitter.com/{{ $user->profile->twitter_handle }}" target="_blank">
+                        {{ $user->profile->twitter_handle }}
+                    </a>
+                </div>
+            </div>
+            @endif
+
+            @if($user->profile->website_url)
+                <div class="align-content-center text-center d-flex">
+                    <div>
+                        <span class="glyphicon glyphicon-globe" style="width:25px"></span>
+                    </div>
+                    <div class="align-items-baseline">
+                        <a href="{{ $user->profile->website_url }}" target="_blank">
+                            {{ $user->profile->website_url }}
+                        </a>
+                    </div>
+                </div>
+            @endif
+
         </div>
         <div class="col-6">
             <div class="d-flex">

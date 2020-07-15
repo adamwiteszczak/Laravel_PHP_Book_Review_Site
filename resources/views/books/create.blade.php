@@ -87,6 +87,27 @@
             </div>
 
             <div class="form-group row col-6 offset-3">
+                <label for="store_link" class="col-md-4 col-form-label">
+                    Store Page URL? (e.g. url to Amazon store page, or your website)
+                </label>
+
+                <input
+                    id="store_link"
+                    type="text"
+                    class="form-control @error('store_link') is-invalid @enderror"
+                    name="store_link"
+                    value="{{ old('store_link') }}"
+                    autocomplete="store_link"
+                >
+
+                @error('store_link')
+                <span class="invalid-feedback" role="alert">
+                        <strong>{{ $message }}</strong>
+                    </span>
+                @enderror
+            </div>
+
+            <div class="form-group row col-6 offset-3">
                 <label for="cover_image" class="col-form-label">Cover Image</label>
                 <input type="file" class="form-control-file" id="cover_image" name="cover_image">
             </div>

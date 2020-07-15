@@ -32,8 +32,8 @@ class ProfileController extends Controller
             'user_profile_image',
             'user',
             'follows',
-            'hide_follow_button')
-        );
+            'hide_follow_button'
+        ));
     }
 
     public function show($link)
@@ -52,12 +52,14 @@ class ProfileController extends Controller
             $hide_follow_button = false;
         }
 
-        return view('profile/index',
+        return view(
+            'profile/index',
             compact(
                 'user_profile_image',
                 'user',
                 'follows',
-                'hide_follow_button')
+                'hide_follow_button'
+            )
         );
     }
 
@@ -76,6 +78,7 @@ class ProfileController extends Controller
                 'displayname' => array('required', 'min:3', 'max:255'),
                 'description' => '',
                 'twitter_handle' => '',
+                'website_url' => '',
                 'image' => ''
             )
         );
@@ -85,9 +88,22 @@ class ProfileController extends Controller
         ));
 
         $profile_data = array(
-            'description' => $data['description'],
-            'twitter_handle' => $data['twitter_handle']
+            'description' => $data['description']
         );
+
+        if (array_key_exists('twitter_handle', $data)) {
+            request()->validate(['twitter_handle', 'string']);
+            $profile_data['twitter_handle'] = $data['twitter_handle'];
+        } else {
+            $profile_data['twitter_handle'] = ''; //delete the existing one if they send no value
+        }
+
+        if (array_key_exists('website_url', $data)) {
+            request()->validate(['website_url', 'url']);
+            $profile_data['website_url'] = $data['website_url'];
+        } else {
+            $profile_data['website_url'] = ''; //delete the existing one if they send no value
+        }
 
         if (request('image')) {
             request()->validate(['image' => 'image']);
@@ -104,7 +120,6 @@ class ProfileController extends Controller
         //@todo add option to set a new link address for the user - a tick box they select on the edit form
 
         return redirect('/profile');
-
     }
 
     //display the edit profile panel

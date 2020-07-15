@@ -20,6 +20,10 @@
                 </div>
                 <hr>
                 <div class="pt-2">{{ $book->blurb }}</div>
+                <hr>
+                <div class="pt-2">
+                    <a href="{{$book->store_link}}" class="text-dark">{{$book->store_link}}</a>
+                </div>
             </div>
         </div>
     </div>
