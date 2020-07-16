@@ -13,10 +13,17 @@
                     <div class="h3">{{ $book->title }}</div>
                     <div class="small pl-3">> <a class="text-dark" href="/genres">{{$book->genre->name}}</a></div>
                 </div>
-                <div class="small">by
-                    <a href="/profile/{{$book->user->profile->profile_link}}" class="text-dark">
+                <div class="small">
+                    <div>
+                        by <a href="/profile/{{$book->user->profile->profile_link}}" class="text-dark">
                         {{ $book->author_name }}
-                    </a>
+                        </a>
+                    </div>
+                    @if($edit_link)
+                        <div>
+                            <a href="/books/edit/{{$book->id}}">Edit Details</a>
+                        </div>
+                    @endif
                 </div>
                 <hr>
                 <div class="pt-2">{{ $book->blurb }}</div>

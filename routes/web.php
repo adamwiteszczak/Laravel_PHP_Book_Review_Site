@@ -33,9 +33,11 @@ Route::post('/follow/{user}', 'FollowsController@store');
 /**
  * Book Routes
  */
+Route::get('/books/edit/{book}', 'BookController@edit');
 Route::get('/books/create', 'BookController@create');
-Route::get('/books/{book}','BookController@show');
+Route::get('/books/{book}', 'BookController@show');
 Route::put('/books', 'BookController@store');
+Route::patch('/books/edit/{book}', 'BookController@update');
 
 Auth::routes();
 
