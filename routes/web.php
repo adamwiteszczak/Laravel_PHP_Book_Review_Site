@@ -39,6 +39,12 @@ Route::get('/books/{book}', 'BookController@show');
 Route::put('/books', 'BookController@store');
 Route::patch('/books/edit/{book}', 'BookController@update');
 
+/**
+ * Review Routes
+ */
+Route::get('/books/review/{book}', 'ReviewController@create');
+Route::put('/review', 'ReviewController@store');
+
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');

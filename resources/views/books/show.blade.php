@@ -5,7 +5,7 @@
         <div class="row">
             <div class="col-3">
                 <img src="{{$cover_image}}" alt="{{$book->title}}" class="img-fluid img-thumbnail">
-                <div class="pt-2 text-center"><a href="/books/{{$book->id}}/review">Review Book</a></div>
+                <div class="pt-2 text-center"><a href="/books/review/{{$book->id}}">Review Book</a></div>
                 <div class="pt-2 text-center">[Star Rating Placeholder]</div>
             </div>
             <div class="col-9">
