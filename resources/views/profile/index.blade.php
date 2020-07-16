@@ -82,7 +82,13 @@
                             <div>{{ $b->title }}</div>
                             <div style="">{{ substr($b->blurb, 0, 200) . '...' }}</div>
                             <div class="pt-2"><a href="/books/{{$b->id}}">read more ...</a></div>
-                            <div class="pt-2">[STAR RATING]</div>
+                            <div class="pt-2">Avg rating: <span class="font-weight-bold">
+                                    {{ \App\Http\Controllers\ReviewController::calculateRating($b->id) }}
+                                </span>
+                            </div>
+                            <div class="pt-0 small">From ({{$b->review->count()}})
+                                <a href="/books/{{$b->id}}/reviews">reviews</a>
+                            </div>
                         </div>
                     </div>
                 @endforeach

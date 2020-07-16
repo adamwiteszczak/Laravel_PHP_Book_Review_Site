@@ -43,7 +43,10 @@ Route::patch('/books/edit/{book}', 'BookController@update');
  * Review Routes
  */
 Route::get('/books/review/{book}', 'ReviewController@create');
-Route::put('/review', 'ReviewController@store');
+Route::put('/books/review', 'ReviewController@store');
+Route::get('/books/review/edit/{review}', 'ReviewController@edit');
+Route::patch('/books/review/edit/{review}', 'ReviewController@update');
+Route::get('/books/{book}/reviews', 'ReviewController@show');
 
 Auth::routes();
 

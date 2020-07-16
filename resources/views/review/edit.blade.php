@@ -3,13 +3,13 @@
 @section('content')
     <div class="container">
         <div class="row col-6 offset-3">
-            <div class="h3">Review: <span class="font-weight-bold">{{ $book->title }}</span></div>
+            <div class="h3">Update Review: <span class="font-weight-bold">{{ $review->book->title }}</span></div>
         </div>
-        <form action="/books/review" method="post" enctype="application/x-www-form-urlencoded">
+        <form action="/books/review/edit/{{$review->book_id}}" method="post" enctype="application/x-www-form-urlencoded">
             @csrf
-            @method('PUT')
+            @method('PATCH')
 
-            <input type="hidden" id="book_id" name="book_id" value="{{$book->id}}">
+            <input type="hidden" id="book_id" name="book_id" value="{{ $review->book_id }}">
             <div class="form-group row col-6 offset-3">
                 <label for="review" class="col-md-4 col-form-label">Your thoughts?</label>
                 <textarea
@@ -19,7 +19,7 @@
                     autofocus
                     cols="10"
                     rows="10"
-                >{{ old('review') }}</textarea>
+                >{{ old('review') ?? $review->review }}</textarea>
 
                 @error('review')
                 <span class="invalid-feedback" role="alert">
@@ -31,7 +31,9 @@
                 <label for="score form-label pr-3">My Rating: </label>
                 <select name="score" id="score" class="ml-4">
                     @for($i = 1; $i < 11; $i++)
-                        <option value="{{ $i }}">{{ $i }}</option>
+                        <option value="{{ $i }}"
+                            {{ $review->score == $i ? ' SELECTED' : '' }}
+                        >{{ $i }}</option>
                     @endfor
                 </select>
             </div>
@@ -39,7 +41,7 @@
                 Remember, your review is public and can be read by others!
             </div>
             <div class="form-group row col-6 offset-3">
-                <button class="btn btn-primary">Submit Review</button>
+                <button class="btn btn-primary">Update Review</button>
             </div>
 
         </form>

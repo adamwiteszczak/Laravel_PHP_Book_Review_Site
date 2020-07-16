@@ -48,11 +48,11 @@ class User extends Authenticatable
         parent::boot();
 
         //create a uuid for a new user
-        static::creating(function($user){
+        static::creating(function ($user) {
             $user->uuid = (string) Str::uuid();
         });
 
-        static::created(function($user) {
+        static::created(function ($user) {
 
             $user->profile()->create(array(
                 'description' => 'A little about me ...',
