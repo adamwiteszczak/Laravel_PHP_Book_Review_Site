@@ -49,7 +49,10 @@
                 </div>
             </div>
             @can('update', $user->profile)
-                <div class="small pb-2"><a href="/profile/edit">Edit Profile</a></div>
+                <div class="d-flex">
+                    <div class="small pb-2"><a href="/profile/edit">Edit Profile</a></div>
+                    <div class="small pl-4"><a href="/books/create">Add Your Book</a></div>
+                </div>
             @endcan
             <div class="d-flex">
                 <div class="pr-4 small"><following-count link="{{ $user->profile->profile_link }}"></following-count></div>
@@ -59,6 +62,31 @@
                 <div class="pr-4 small">Reviews <strong>2</strong></div>
             </div>
             <div class="pt-4"> {{ $user->profile->description }}</div>
+        </div>
+        <div class="col-6 offset-2 pt-4">
+            <div class="h3">Books by {{ $user->name }}</div>
+            <hr>
+            <div class="">
+                @foreach($user->book as $b)
+                    <div class="d-flex pb-3" style="min-width: 200px;">
+                        <div class="pr-3">
+                            <a href="/books/{{$b->id}}">
+                                <img
+                                    src="{{\App\Http\Controllers\BookController::getCoverImage($b)}}"
+                                    class=""
+                                    style="max-width:150px;"
+                                ></img>
+                            </a>
+                        </div>
+                        <div class="pr-3">
+                            <div>{{ $b->title }}</div>
+                            <div style="">{{ substr($b->blurb, 0, 200) . '...' }}</div>
+                            <div class="pt-2"><a href="/books/{{$b->id}}">read more ...</a></div>
+                            <div class="pt-2">[STAR RATING]</div>
+                        </div>
+                    </div>
+                @endforeach
+            </div>
         </div>
     </div>
 </div>

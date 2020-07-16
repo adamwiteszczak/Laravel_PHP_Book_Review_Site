@@ -60,7 +60,7 @@ class BookController extends Controller
         return view('books/show', compact('book', 'cover_image'));
     }
 
-    private function getCoverImage(Book $book)
+    public static function getCoverImage(Book $book)
     {
         if ($book->cover_image) {
             return '/storage/' . $book->cover_image;
