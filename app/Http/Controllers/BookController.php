@@ -41,7 +41,7 @@ class BookController extends Controller
             request()->validate(['cover_image' => 'image']);
             $data['cover_image'] = request('cover_image')->store('book', 'public');
             $image = Image::make(public_path('storage/' . $data['cover_image']))
-                ->resize(null, 750, function ($constraint) {
+                ->fit(1000, 1600, function ($constraint) {
                     $constraint->aspectRatio();
                 });
             $image->save();
