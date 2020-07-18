@@ -10,10 +10,14 @@ use Illuminate\Support\Facades\Storage;
 
 class ProfileController extends Controller
 {
-    /** helper functions */
-    public function getProfileImage($user)
+    /** helper functions todo move these out to their own helper class */
+    public static function getProfileImage($user)
     {
-        return ($user->profile->image) ? '/storage/'. $user->profile->image : '/img/noimage.jpg';
+        if (!$user->profile->image || $user->profile->image == '/img/noimage.jpg') {
+            return '/img/noimage.jpg';
+        }
+
+        return '/storage/'. $user->profile->image;
     }
 
     public function index()

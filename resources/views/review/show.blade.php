@@ -30,7 +30,7 @@
                 <div class="d-flex">
                     <div class="pr-4">
                         <img
-                            src="/storage/{{$review->user->profile->image}}"
+                            src="{{\App\Http\Controllers\ProfileController::getProfileImage($user)}}"
                             class="rounded-circle"
                             style="width:50px"
                         >

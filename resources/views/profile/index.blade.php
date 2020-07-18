@@ -65,7 +65,7 @@
             </div>
             <div class="pt-4"> {{ $user->profile->description }}</div>
         </div>
-        
+
         @if($user->profile->profile_type == 'author')
         <div class="col-6 offset-2 pt-4">
             <div class="h3">Books by {{ $user->name }}</div>
