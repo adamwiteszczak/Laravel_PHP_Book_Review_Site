@@ -11,8 +11,19 @@ class ReviewController extends Controller
 {
     public function create(Book $book)
     {
-        if (!auth()->user()) {
+        $user = auth()->user();
+        if (!$user) {
             return redirect('/login');
+        }
+
+        //check to see if the user has previously reviewed this book - they can't review it
+        //twice, and so instead, take them to the edit review pages for their existing review:
+        $review = Review::whereUserUuid($user->uuid)
+            ->whereBookId($book->id)
+            ->get();
+
+        if ($review->count()) {
+            return redirect('/books/review/edit/' . $review[0]->id);
         }
 
         return view('review/create', compact('book'));
