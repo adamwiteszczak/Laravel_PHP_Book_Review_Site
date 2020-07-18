@@ -51,7 +51,9 @@
             @can('update', $user->profile)
                 <div class="d-flex">
                     <div class="small pb-2"><a href="/profile/edit">Edit Profile</a></div>
-                    <div class="small pl-4"><a href="/books/create">Add Your Book</a></div>
+                    @if($user->profile->profile_type == 'author')
+                        <div class="small pl-4"><a href="/books/create">Add Your Book</a></div>
+                    @endif
                 </div>
             @endcan
             <div class="d-flex">
@@ -63,6 +65,8 @@
             </div>
             <div class="pt-4"> {{ $user->profile->description }}</div>
         </div>
+        
+        @if($user->profile->profile_type == 'author')
         <div class="col-6 offset-2 pt-4">
             <div class="h3">Books by {{ $user->name }}</div>
             <hr>
@@ -99,6 +103,7 @@
                 @endforeach
             </div>
         </div>
+        @endif
     </div>
 </div>
 @endsection
