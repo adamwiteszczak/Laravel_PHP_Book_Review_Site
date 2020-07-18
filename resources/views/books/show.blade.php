@@ -6,7 +6,16 @@
             <div class="col-3">
                 <img src="{{$cover_image}}" alt="{{$book->title}}" class="img-fluid img-thumbnail">
                 <div class="pt-2 text-center"><a href="/books/review/{{$book->id}}">Review Book</a></div>
-                <div class="pt-2 text-center">[Star Rating Placeholder]</div>
+                <div class="pt-2 text-center">
+                    @if($book->review && $book->review->count())
+                        Avg Score:
+                        {{ \App\Http\Controllers\ReviewController::calculateRating($book->id) }}
+                        / 10
+                    @endif
+                    @if(!$book->review->count())
+                        n/a
+                    @endif
+                </div>
             </div>
             <div class="col-9">
                 <div class="d-flex">
@@ -33,6 +42,45 @@
                 </div>
             </div>
         </div>
+        <div class="h3 row col-6 offset-3">Reviews:</div>
+        @if($book->review->count() == 0)
+            <div class="row col-6 offset-3">Nothing here! &nbsp; <a href="/books/review/{{$book->id}}">
+                    Why not write a review?</a>
+            </div>
+        @endif
+
+        @foreach($book->review as $review)
+            <div class="row col-6 offset-3 pt-4 pb-4 mb-4" style="border:1px solid silver; border-radius: 5px;">
+                <div class="d-flex">
+                    <div class="pr-4">
+                        <img
+                            src="/storage/{{$review->user->profile->image}}"
+                            class="rounded-circle"
+                            style="width:50px"
+                        >
+                    </div>
+                    <div>
+                        <div class="h6">
+                            <div>
+                                Review by -
+                                <a href="/profile/{{ $book->user->profile->profile_link }}">
+                                    {{ $book->user->name }}
+                                </a>
+                            </div>
+                            <div class="small">
+                                {{date("F d, Y", strtotime($review->created_at))}}
+                            </div>
+                            <div class="pt-4 font-weight-bold">
+                                Rating: {{ $review->score }} / 10
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="pt-4">
+                    {{ $review->review }}
+                </div>
+            </div>
+        @endforeach
     </div>
 
 @endsection
