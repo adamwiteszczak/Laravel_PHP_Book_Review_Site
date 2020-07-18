@@ -72,6 +72,11 @@
                             <div class="small">
                                 {{date("F d, Y", strtotime($review->created_at))}}
                             </div>
+                            @if($user->uuid == $review->user_uuid)
+                                <div class="small">
+                                    <a href="/books/review/edit/{{ $review->id }}">Edit</a>
+                                </div>
+                            @endif
                             <div class="pt-4 font-weight-bold">
                                 Rating: {{ $review->score }} / 10
                             </div>

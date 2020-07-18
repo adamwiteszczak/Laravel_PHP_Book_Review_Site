@@ -65,7 +65,7 @@ class ReviewPolicy
      */
     public function delete(User $user, Review $review)
     {
-        //
+        return $user->uuid == $review->user_uuid;
     }
 
     /**

@@ -68,7 +68,7 @@ class ReviewController extends Controller
         );
 
         $review->update($data);
-        return redirect('/books/reviews/' . $review->id);
+        return redirect('/books/' . $review->book->id);
     }
 
     public function show(Book $book)

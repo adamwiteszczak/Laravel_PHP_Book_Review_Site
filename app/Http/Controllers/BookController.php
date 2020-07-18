@@ -64,7 +64,7 @@ class BookController extends Controller
             $edit_link = true;
         }
 
-        return view('books/show', compact('book', 'cover_image', 'edit_link'));
+        return view('books/show', compact('book', 'cover_image', 'edit_link', 'user'));
     }
 
     public function edit(Book $book)
