@@ -18,8 +18,11 @@
                 font-weight: 200;
                 height: 100vh;
                 margin: 0;
-                background-image: url("img/bg.jpg");
+                background-image: url("img/bg2.jpg");
                 background-size: cover;
+                background-repeat: no-repeat;
+                background-position: center;
+                background-color: #f5f5f3;
             }
 
             .full-height {

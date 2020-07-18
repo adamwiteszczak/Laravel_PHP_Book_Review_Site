@@ -50,7 +50,7 @@
         @endif
 
         @foreach($book->review as $review)
-            <div class="row col-6 offset-3 pt-4 pb-4 mb-4" style="border:1px solid silver; border-radius: 5px;">
+            <div class="row col-6 offset-3 pt-4 pb-4 mb-4 panel">
                 <div class="d-flex">
                     <div class="pr-4">
                         <img

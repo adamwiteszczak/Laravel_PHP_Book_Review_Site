@@ -10928,3 +10928,20 @@ a.text-dark:focus {
   }
 }
 
+.fsbackground {
+  background-image: url(/images/bg2.jpg?873d300a7cab8dd83e1deac3674ff26c);
+  background-repeat: no-repeat;
+  background-position: center;
+  background-color: #f5f5f3;
+  background-size: cover;
+  background-attachment: fixed;
+}
+
+.panel {
+  border: 1px solid silver;
+  border-radius: 5px;
+  background-color: #f5f5f3;
+  box-shadow: #adb5bd 1px 1px;
+  padding: 10px;
+}
+

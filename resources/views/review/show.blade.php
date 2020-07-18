@@ -26,11 +26,11 @@
         </div>
 
         @foreach($book->review as $review)
-            <div class="row col-6 offset-3 pt-4 pb-4 mb-4" style="border:1px solid silver; border-radius: 5px;">
+            <div class="row col-6 offset-3 pt-4 pb-4 mb-4 panel">
                 <div class="d-flex">
                     <div class="pr-4">
                         <img
-                            src="{{\App\Http\Controllers\ProfileController::getProfileImage($user)}}"
+                            src="{{\App\Http\Controllers\ProfileController::getProfileImage($review->user)}}"
                             class="rounded-circle"
                             style="width:50px"
                         >
@@ -39,8 +39,8 @@
                         <div class="h6">
                             <div>
                                 Review by -
-                                <a href="/profile/{{ $book->user->profile->profile_link }}">
-                                    {{ $book->user->name }}
+                                <a href="/profile/{{ $review->user->profile->profile_link }}">
+                                    {{ $review->user->name }}
                                 </a>
                             </div>
                             <div class="small">

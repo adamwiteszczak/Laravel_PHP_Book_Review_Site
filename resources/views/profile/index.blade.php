@@ -72,7 +72,7 @@
             <hr>
             <div class="">
                 @foreach($user->book as $b)
-                    <div class="d-flex pb-3" style="min-width: 200px;">
+                    <div class="d-flex pb-3 mb-4 panel" style="min-width: 200px;">
                         <div class="pr-3">
                             <a href="/books/{{$b->id}}">
                                 <img

@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('content')
-    <div class="container">
+    <div class="container panel">
         <div class="row col-6 offset-3">
             <div class="h3">Add Book</div>
         </div>
