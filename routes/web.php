@@ -38,6 +38,7 @@ Route::get('/books/create', 'BookController@create');
 Route::get('/books/{book}', 'BookController@show');
 Route::put('/books', 'BookController@store');
 Route::patch('/books/edit/{book}', 'BookController@update');
+Route::delete('/books/{book}', 'BookController@delete');
 
 /**
  * Review Routes

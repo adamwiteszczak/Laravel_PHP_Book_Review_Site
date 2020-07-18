@@ -119,5 +119,14 @@
             </div>
 
         </form>
+
+        <form action="/books/{{$book->id}}" method="post" enctype="application/x-www-form-urlencoded">
+        @csrf
+        @method('DELETE')
+            <div class="form-group row col-6 offset-3">
+                <button class="btn btn-danger">Delete Book?</button>
+            </div>
+        </form>
+
     </div>
 @endsection

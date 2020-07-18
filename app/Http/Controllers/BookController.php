@@ -112,6 +112,12 @@ class BookController extends Controller
         return redirect('/books/' . $book->id);
     }
 
+    public function delete(Book $book)
+    {
+        $book->delete();
+        return redirect('/profile');
+    }
+
     public static function getCoverImage(Book $book)
     {
         if ($book->cover_image) {

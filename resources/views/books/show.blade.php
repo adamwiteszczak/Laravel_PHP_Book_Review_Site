@@ -44,7 +44,7 @@
         </div>
         <div class="h3 row col-6 offset-3">Reviews:</div>
         @if($book->review->count() == 0)
-            <div class="row col-6 offset-3">Nothing here! &nbsp; <a href="/books/review/{{$book->id}}">
+            <div class="row col-6 offset-3 panel">Nothing here! &nbsp; <a href="/books/review/{{$book->id}}">
                     Why not write a review?</a>
             </div>
         @endif
