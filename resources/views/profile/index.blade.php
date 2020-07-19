@@ -61,7 +61,6 @@
                 @if($user->profile->profile_type == 'author')
                     <div class="pr-4 small"><follower-count link="{{ $user->profile->profile_link }}"></follower-count></div>
                 @endif
-                <div class="pr-4 small">Reviews <strong>2</strong></div>
             </div>
             <div class="pt-4"> {{ $user->profile->description }}</div>
         </div>
