@@ -66,6 +66,26 @@
             .m-b-md {
                 margin-bottom: 30px;
             }
+
+            .searchinput{
+                width: 500px;
+                border-radius: 5px;
+                border: 1px solid silver;
+                padding: 5px;
+                height: 30px;
+                line-height: 30px;
+                font-size: 1.2em;
+                font-weight: normal;
+                color: #7f7878;
+            }
+            .searchbutton{
+                height: 40px;
+                margin-top: 10px;
+                border: 1px solid silver;
+                border-radius: 5px;
+                width:500px;
+            }
+
         </style>
     </head>
     <body>
@@ -87,6 +107,16 @@
 
             <div class="content">
                 <div class="title">Book Site</div>
+                <div class="bigsearch">
+                    <form action="/search" method="post">
+                        @csrf
+                        <label for="search">Search for books, authors or genres</label>
+                        <div class="form-group">
+                            <input class="searchinput" type="text" class="form-control" id="search" name="search" placeholder="I'm looking for...">
+                        </div>
+                        <button class="btn searchbutton">Search</button>
+                    </form>
+                </div>
             </div>
         </div>
     </body>
