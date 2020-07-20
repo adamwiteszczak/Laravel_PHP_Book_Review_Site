@@ -71,7 +71,7 @@
             <hr>
             <div class="">
                 @foreach($user->book as $b)
-                    <div class="d-flex pb-3 mb-4 panel" style="min-width: 200px;">
+                    <div class="d-flex pb-3 mb-4" style="min-width: 200px;">
                         <div class="pr-3">
                             <a href="/books/{{$b->id}}">
                                 <img
@@ -81,7 +81,7 @@
                                 ></img>
                             </a>
                         </div>
-                        <div class="pr-3">
+                        <div class="pr-3 panel">
                             <div>{{ $b->title }}</div>
                             <div style="">{{ substr($b->blurb, 0, 200) . '...' }}</div>
                             <div class="pt-2"><a href="/books/{{$b->id}}">read more ...</a></div>

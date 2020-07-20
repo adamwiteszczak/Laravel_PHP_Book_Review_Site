@@ -49,6 +49,12 @@ Route::get('/books/review/edit/{review}', 'ReviewController@edit');
 Route::patch('/books/review/edit/{review}', 'ReviewController@update');
 Route::get('/books/{book}/reviews', 'ReviewController@show');
 
+/**
+ * Genre Routes
+ */
+Route::get('/genres', 'GenreController@index');
+Route::get('/genres/{link}', 'GenreController@show');
+
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');

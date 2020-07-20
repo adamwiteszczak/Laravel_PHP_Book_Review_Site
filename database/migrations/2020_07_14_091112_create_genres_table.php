@@ -16,6 +16,7 @@ class CreateGenresTable extends Migration
         Schema::create('genres', function (Blueprint $table) {
             $table->id();
             $table->string('name');
+            $table->string('link');
         });
 
         $genres = array(
@@ -38,7 +39,7 @@ class CreateGenresTable extends Migration
             'Health',
             'History',
             'Travel',
-            'Guide/How to',
+            'Guide How to',
             'Families and Relationships',
             'Humor',
             'Childrens',
@@ -47,7 +48,8 @@ class CreateGenresTable extends Migration
 
         foreach ($genres as $genre) {
             DB::table('genres')->insert(array(
-                'name' => $genre
+                'name' => $genre,
+                'link' => strtolower(str_replace(' ', '-', $genre))
             ));
         }
     }

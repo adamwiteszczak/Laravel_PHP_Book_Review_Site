@@ -20,7 +20,9 @@
             <div class="col-9">
                 <div class="d-flex">
                     <div class="h3">{{ $book->title }}</div>
-                    <div class="small pl-3">> <a class="text-dark" href="/genres">{{$book->genre->name}}</a></div>
+                    <div class="small pl-3">>
+                        <a class="text-dark" href="/genres/{{$book->genre->link}}">{{$book->genre->name}}</a>
+                    </div>
                 </div>
                 <div class="small">
                     <div>
