@@ -21,10 +21,10 @@
 </head>
 <body class="fsbackground">
     <div id="app">
-        <nav class="navbar navbar-expand-md navbar-light bg-white shadow-sm">
+        <nav class="navbar navbar-expand-md navbar-light shadow-sm">
             <div class="container">
                 <a class="navbar-brand" href="{{ url('/') }}">
-                    {{ config('app.name', 'Laravel') }}
+                    Book-Stomp
                 </a>
                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="{{ __('Toggle navigation') }}">
                     <span class="navbar-toggler-icon"></span>
@@ -35,9 +35,27 @@
                     <ul class="navbar-nav mr-auto">
 
                     </ul>
+                    <form action="/search" method="post" style="margin-top:15px;">
+                        @csrf
+                        <div class="form-group">
+                            <input class="searchinput" type="text" class="form-control" id="search" name="search" placeholder="I'm looking for...">
+                            <button class="btn searchbutton">Search</button>
+                        </div>
+                    </form>
 
                     <!-- Right Side Of Navbar -->
                     <ul class="navbar-nav ml-auto">
+                        <li class="nav-item">
+                            <a class="nav-link main-nav-link" href="{{ url('/genres') }}">Browse Genres</a>
+                        </li>
+                        <li class="nav-item main-nav-link">
+                            <a class="nav-link" href="{{ url('/authors') }}">Browse Authors</a>
+                        </li>
+
+                        <li class="nav-item main-nav-link">
+                            <a class="nav-link" href="{{ url('/profile') }}">My Profile</a>
+                        </li>
+
                         <!-- Authentication Links -->
                         @guest
                             <li class="nav-item">

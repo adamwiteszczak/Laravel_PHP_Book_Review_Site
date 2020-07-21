@@ -33,3 +33,31 @@
     color: #4e555b;
     text-align: center;
 }
+
+.main-nav-link {
+    text-transform: uppercase;
+    letter-spacing: 1.6px;
+    font-weight: 600;
+    font-size:13px;
+    padding-left:25px;
+}
+
+.searchinput{
+    width: 300px;
+    border-radius: 5px;
+    border: 1px solid silver;
+    height: 30px;
+    line-height: 30px;
+    font-size: 1em;
+    font-weight: normal;
+    color: #7f7878;
+    text-align: center;
+}
+.searchbutton{
+    height: 30px;
+    border: 1px solid silver;
+    border-radius: 5px;
+    width:100px;
+    line-height: 15px;
+    font-size:0.8em;
+}

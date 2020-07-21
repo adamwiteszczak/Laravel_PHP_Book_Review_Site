@@ -4,7 +4,7 @@
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
 
-        <title>Laravel</title>
+        <title>Book Stomp</title>
 
         <!-- Fonts -->
         <link href="https://fonts.googleapis.com/css?family=Nunito:200,600" rel="stylesheet">
@@ -87,6 +87,10 @@
                 width:500px;
             }
 
+            .bigsearch {
+                margin-top:20px;
+            }
+
         </style>
     </head>
     <body>
@@ -109,7 +113,10 @@
             @endif
 
             <div class="content">
-                <div class="title">Book Site</div>
+                <div class="title">Book Stomp</div>
+                <div class="subtitle">
+                    A place for indie authors to showcase their work and reach readers
+                </div>
                 <div class="bigsearch">
                     <form action="/search" method="post">
                         @csrf
