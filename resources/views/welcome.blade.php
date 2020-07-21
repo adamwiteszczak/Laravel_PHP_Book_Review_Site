@@ -77,6 +77,7 @@
                 font-size: 1.2em;
                 font-weight: normal;
                 color: #7f7878;
+                text-align: center;
             }
             .searchbutton{
                 height: 40px;
@@ -92,6 +93,8 @@
         <div class="flex-center position-ref full-height">
             @if (Route::has('login'))
                 <div class="top-right links">
+                    <a href="{{ url('/genres') }}">Browse Generes</a>
+                    <a href="{{ url('/authors') }}">Browse Authors</a>
                     @auth
                         <a href="{{ url('/home') }}">Home</a>
                         <a href="{{url('/profile')}}">Profile</a>

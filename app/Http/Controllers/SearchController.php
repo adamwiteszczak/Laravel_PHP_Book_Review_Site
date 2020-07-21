@@ -69,4 +69,37 @@ class SearchController extends Controller
 
         return view('/search/show', compact('return_data'));
     }
+
+    public function authors()
+    {
+        $authors = DB::table('users')
+            ->join('profiles', 'profiles.user_uuid', '=', 'users.uuid')
+            ->where('profiles.profile_type', '=', 'author')
+            ->select('users.name', 'profiles.profile_link')
+            ->get();
+
+        $list = range("A", "Z");
+        $list = array_flip($list);
+
+        foreach ($list as $letter => $position) {
+            $list[$letter] = array();
+        }
+
+        foreach ($authors as $a) {
+            $name = explode(" ", $a->name);
+            $last = last($name);
+            $list[strtoupper($last[0])][] = array(
+                'name' => implode(", ", array_reverse($name)),
+                'link' => $a->profile_link
+            );
+        }
+
+        foreach ($list as $letter => &$entries) {
+            usort($entries, function ($a, $b) {
+                return strcmp($b['name'], $a['name']);
+            });
+        }
+
+        return view('/search/authors', compact('list'));
+    }
 }

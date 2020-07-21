@@ -57,6 +57,8 @@ Route::get('/books/{book}/reviews', 'ReviewController@show');
 Route::get('/genres', 'GenreController@index');
 Route::get('/genres/{link}', 'GenreController@show');
 
+Route::get('/authors', 'SearchController@authors');
+
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
