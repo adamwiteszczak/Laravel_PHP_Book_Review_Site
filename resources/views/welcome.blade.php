@@ -100,7 +100,6 @@
                     <a href="{{ url('/genres') }}">Browse Generes</a>
                     <a href="{{ url('/authors') }}">Browse Authors</a>
                     @auth
-                        <a href="{{ url('/home') }}">Home</a>
                         <a href="{{url('/profile')}}">Profile</a>
                     @else
                         <a href="{{ route('login') }}">Login</a>

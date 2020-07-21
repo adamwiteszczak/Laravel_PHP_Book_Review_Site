@@ -57,7 +57,16 @@ Route::get('/books/{book}/reviews', 'ReviewController@show');
 Route::get('/genres', 'GenreController@index');
 Route::get('/genres/{link}', 'GenreController@show');
 
+/**
+ * Search Routes
+ */
 Route::get('/authors', 'SearchController@authors');
+
+/**
+ * Post Routes
+ */
+Route::get('/post/', 'PostController@create');
+Route::put('/post', 'PostController@store');
 
 Auth::routes();
 

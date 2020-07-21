@@ -40,6 +40,14 @@
                 </div>
             @endif
 
+            @if($user->profile->profile_type == 'author')
+                <div class="mt-2">
+                    <a href="/post">
+                        <button class="btn btn-success">Create Blog Post</button>
+                    </a>
+                </div>
+            @endif
+
         </div>
         <div class="col-6">
             <div class="d-flex">
