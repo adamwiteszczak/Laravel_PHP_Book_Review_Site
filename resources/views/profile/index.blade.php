@@ -74,6 +74,26 @@
         </div>
 
         @if($user->profile->profile_type == 'author')
+
+            <div class="col-6 offset-2 pt-4">
+                <div class="h3">Blog Posts by {{ $user->name }}</div>
+                <hr>
+
+                @if(count($latest_post))
+                    <div class="panel blog-entry">
+                        <div class="h3 blog-title">
+                            {{ $latest_post[0]->title }}
+                        </div>
+                        <div class="blog-body">
+                            {{ $latest_post[0]->entry }}
+                        </div>
+                    </div>
+                @endif;
+
+
+            </div>
+
+
         <div class="col-6 offset-2 pt-4">
             <div class="h3">Books by {{ $user->name }}</div>
             <hr>

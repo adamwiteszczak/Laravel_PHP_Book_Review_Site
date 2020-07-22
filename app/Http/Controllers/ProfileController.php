@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Post;
 use App\Profile;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
@@ -32,11 +33,14 @@ class ProfileController extends Controller
 
         $user_profile_image = $this->getProfileImage($user);
 
+        $latest_post = Post::where('user_uuid', '=', $user->uuid)->latest()->get();
+
         return view('profile/index', compact(
             'user_profile_image',
             'user',
             'follows',
-            'hide_follow_button'
+            'hide_follow_button',
+            'latest_post'
         ));
     }
 
@@ -50,6 +54,8 @@ class ProfileController extends Controller
         $hide_follow_button = true;
         $follows = false;
 
+        $latest_post = Post::where('user_uuid', '=', $user->uuid)->latest()->get();
+
         if ($auth_user && $auth_user->uuid != $user->uuid) {
             //unhide the button if you are not viewing your own profile
             $follows = auth()->user()->following->contains($user->profile->uuid);
@@ -62,7 +68,8 @@ class ProfileController extends Controller
                 'user_profile_image',
                 'user',
                 'follows',
-                'hide_follow_button'
+                'hide_follow_button',
+                'latest_post'
             )
         );
     }
